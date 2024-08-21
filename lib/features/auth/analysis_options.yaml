@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - always_specify_types
+    - prefer_const_constructors
+    - prefer_expression_function_bodies
+    - prefer_double_quotes
+    - prefer_relative_imports
+    - public_member_api_docs
+    - sort_constructors_first
