@@ -1,4 +1,4 @@
-library shared;
+library;
 
 /// A Calculator.
 class Calculator {
