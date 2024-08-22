@@ -6,15 +6,15 @@ part "user_base.impl.dart";
 abstract class UserBase {
   UserBase._({
     required this.id,
-    required this.name,
-    this.sessionId,
+    required this.email,
+    this.name,
   });
 
   /// Returns a new instance of [UserBase].
   factory UserBase({
     required String id,
-    required String name,
-    String? sessionId,
+    required String email,
+    String? name,
   }) = _UserBaseImpl;
 
   /// Returns a new instance of [UserBase] from a JSON [String].
@@ -23,9 +23,8 @@ abstract class UserBase {
   /// The id of the user.
   final String id;
 
-  /// The name of the user.
-  final String name;
+  final String email;
 
-  /// The session id of the user.
-  String? sessionId;
+  /// The name of the user.
+  String? name;
 }
