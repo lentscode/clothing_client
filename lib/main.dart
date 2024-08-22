@@ -1,6 +1,8 @@
+import "package:common/common.dart";
 import "package:flutter/material.dart";
 
-void main() {
+void main() async {
+  await config();
   runApp(const MainApp());
 }
 
@@ -10,11 +12,7 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Text("Hello World!"),
-          ),
-        ),
+  Widget build(BuildContext context) => MaterialApp.router(
+        routerConfig: AppRouter().router,
       );
 }
