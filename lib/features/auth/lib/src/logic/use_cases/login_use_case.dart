@@ -1,6 +1,8 @@
 part of "../logic.dart";
 
+/// Single functionality class to log in user.
 class LoginUseCase {
+  /// Returns an instance of [LoginUseCase].
   const LoginUseCase({
     required String email,
     required String password,
@@ -13,6 +15,7 @@ class LoginUseCase {
   final String _password;
   final Auth _auth;
 
+  /// Logs in the user and returns a [UserBase].
   Future<UserBase> call() {
     try {
       return _auth.login(UserAuth(email: _email, password: _password));

@@ -6,6 +6,7 @@ class MissingBodyException implements Exception {
   String toString() => "Response body is missing";
 }
 
+/// Throws when credentials for login or registration are incorrect.
 class InvalidCredentialsException implements Exception {
   @override
   String toString() => "Invalid credentials";
