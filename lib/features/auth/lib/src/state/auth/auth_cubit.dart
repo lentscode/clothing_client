@@ -6,17 +6,25 @@ import "../../../auth.dart";
 part "auth_cubit.impl.dart";
 part "auth_state.dart";
 
+/// Cubit that handles authentication state.
 abstract class AuthCubit extends Cubit<AuthState> {
   AuthCubit._({
     required this.loginUseCase,
     required this.registerUseCase,
-  }) : super(const AuthInitial(mode: AuthMode.register));
+    AuthMode initialMode = AuthMode.register,
+  }) : super(AuthInitial(mode: initialMode));
 
   /// Returns an instance of [AuthCubit].
   factory AuthCubit({
     required LoginUseCase Function(String email, String password) loginUseCase,
     required RegisterUseCase Function(String email, String password) registerUseCase,
-  }) = _AuthCubitImpl;
+    AuthMode initialMode = AuthMode.register,
+  }) =>
+      _AuthCubitImpl(
+        loginUseCase: loginUseCase,
+        registerUseCase: registerUseCase,
+        initialMode: initialMode,
+      );
 
   /// Login handler.
   final LoginUseCase Function(String email, String password) loginUseCase;
