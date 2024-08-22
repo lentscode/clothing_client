@@ -4,7 +4,7 @@ class _AuthImpl extends Auth {
   const _AuthImpl(super._dio) : super._();
 
   @override
-  Future<UserBase> register(UserRegistration user) async {
+  Future<UserBase> register(UserAuth user) async {
     final Response<String> response = await _dio.post("/public/register", data: user.toMap());
 
     if (response.data == null) {
@@ -13,7 +13,7 @@ class _AuthImpl extends Auth {
 
     switch (response.statusCode) {
       case 200:
-        final UserLogin userLogin = UserLogin(email: user.email, password: user.password);
+        final UserAuth userLogin = UserAuth(email: user.email, password: user.password);
         return login(userLogin);
       //TODO: ADD CASES FOR OTHER STATUS CODES
       default:
@@ -22,7 +22,7 @@ class _AuthImpl extends Auth {
   }
 
   @override
-  Future<UserBase> login(UserLogin user) async {
+  Future<UserBase> login(UserAuth user) async {
     final Response<String> response = await _dio.post("/public/login", data: user.toMap());
 
     if (response.data == null) {

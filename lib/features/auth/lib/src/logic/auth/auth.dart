@@ -15,8 +15,8 @@ abstract class Auth {
   final Dio _dio;
 
   /// Registers a user.
-  Future<UserBase> register(UserRegistration user);
+  Future<UserBase> register(UserAuth user);
 
   /// Logs in a user.
-  Future<UserBase> login(UserLogin user);
+  Future<UserBase> login(UserAuth user);
 }
