@@ -4,7 +4,7 @@ import "package:common/common.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 
-import "../state/cubit/auth_cubit.dart";
+import "../state/auth/auth_cubit.dart";
 
 part "auth_page.dart";
 part "components/auth_form_text_field.dart";
