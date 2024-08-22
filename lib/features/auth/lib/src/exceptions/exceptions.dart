@@ -6,6 +6,11 @@ class MissingBodyException implements Exception {
   String toString() => "Response body is missing";
 }
 
+class InvalidCredentialsException implements Exception {
+  @override
+  String toString() => "Invalid credentials";
+}
+
 /// Throws when the server returns an internal error.
 class ServerException implements Exception {
   @override
