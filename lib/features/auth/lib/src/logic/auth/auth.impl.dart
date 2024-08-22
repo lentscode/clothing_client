@@ -13,8 +13,9 @@ class _AuthImpl extends Auth {
 
     switch (response.statusCode) {
       case 200:
-        final UserAuth userLogin = UserAuth(email: user.email, password: user.password);
-        return login(userLogin);
+        return UserBase.fromJson(response.data!);
+      case 403:
+        throw InvalidCredentialsException();
       //TODO: ADD CASES FOR OTHER STATUS CODES
       default:
         throw ServerException();
@@ -32,6 +33,8 @@ class _AuthImpl extends Auth {
     switch (response.statusCode) {
       case 200:
         return UserBase.fromJson(response.data!);
+      case 401:
+        throw InvalidCredentialsException();
       //TODO: ADD CASES FOR OTHER STATUS CODES
       default:
         throw ServerException();
