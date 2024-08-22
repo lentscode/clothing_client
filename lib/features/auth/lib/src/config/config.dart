@@ -4,6 +4,7 @@ import "package:dio/dio.dart";
 import "package:get_it/get_it.dart";
 
 import "../../auth.dart";
+import "credentials/auth_credentials.dart";
 
 /// Service locator.
 final GetIt authGetIt = GetIt.instance;
@@ -12,7 +13,7 @@ final GetIt authGetIt = GetIt.instance;
 Future<void> authConfig() async {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://localhost:8080",
+      baseUrl: AuthCredentials().apiBaseUrlLocal,
       validateStatus: (int? status) => true,
     ),
   );
