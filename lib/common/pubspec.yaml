@@ -1,14 +1,18 @@
 name: common
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: 'none'
 
 environment:
   sdk: ^3.5.0
   flutter: ">=1.17.0"
 
 dependencies:
+  auth: 
+    path: ../features/auth
   flutter:
     sdk: flutter
+  go_router: ^14.2.6
 
 dev_dependencies:
   flutter_test:
