@@ -1,7 +1,7 @@
-part of "user_login.dart";
+part of "user_auth.dart";
 
-class _UserLoginImpl extends UserLogin {
-  const _UserLoginImpl({
+class _UserAuthImpl extends UserAuth {
+  const _UserAuthImpl({
     required super.email,
     required super.password,
   }) : super._();
