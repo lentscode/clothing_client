@@ -1,7 +1,7 @@
 part of "auth.dart";
 
 class _AuthImpl extends Auth {
-  const _AuthImpl(super._dio) : super._();
+  _AuthImpl(super._dio) : super._();
 
   @override
   Future<UserBase> register(UserAuth user) async {
@@ -32,7 +32,8 @@ class _AuthImpl extends Auth {
 
     switch (response.statusCode) {
       case 200:
-        return UserBase.fromJson(response.data!);
+        _user = UserBase.fromJson(response.data!);
+        return _user!;
       case 401:
         throw InvalidCredentialsException();
       //TODO: ADD CASES FOR OTHER STATUS CODES
@@ -40,4 +41,9 @@ class _AuthImpl extends Auth {
         throw ServerException();
     }
   }
+
+  UserBase? _user;
+
+  @override
+  UserBase? get user => _user;
 }

@@ -19,4 +19,6 @@ abstract class Auth {
 
   /// Logs in a user.
   Future<UserBase> login(UserAuth user);
+
+  UserBase? get user;
 }
