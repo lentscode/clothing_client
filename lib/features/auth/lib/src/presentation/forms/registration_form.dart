@@ -126,11 +126,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // context.read<AuthCubit>().call(_emailController.text, _passwordController.text);
+                    context
+                        .read<AuthCubit>()
+                        .call(_emailController.text, _passwordController.text);
                   }
                 },
                 child: BlocBuilder<AuthCubit, AuthState>(
-                  builder: (BuildContext context, AuthState state) => switch (state) {
+                  builder: (BuildContext context, AuthState state) =>
+                      switch (state) {
                     AuthLoading() => const CircularProgressIndicator.adaptive(),
                     _ => const Text("Registrati"),
                   },
