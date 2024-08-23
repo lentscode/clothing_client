@@ -19,7 +19,10 @@ class _AuthCubitImpl extends AuthCubit {
       emit(AuthSuccess(mode: state.mode, user: user));
     } on Exception catch (e) {
       final (String? emailError, String? passwordError) = _parseException(e);
-      emit(AuthError(mode: state.mode, emailError: emailError, passwordError: passwordError));
+      emit(AuthError(
+          mode: state.mode,
+          emailError: emailError,
+          passwordError: passwordError));
     }
   }
 
@@ -53,7 +56,9 @@ class _AuthCubitImpl extends AuthCubit {
 
   @override
   Future<void> call(String email, String password) =>
-      state.mode == AuthMode.login ? _login(email, password) : _register(email, password);
+      state.mode == AuthMode.login
+          ? _login(email, password)
+          : _register(email, password);
 
   (String? emailError, String? passwordError) _parseException(Exception e) {
     if (e is InvalidCredentialsException) {

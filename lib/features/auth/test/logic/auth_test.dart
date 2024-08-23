@@ -55,7 +55,8 @@ void main() {
         final Auth auth = Auth(dio);
         final UserAuth userAuth = UserAuth(email: email, password: "password");
 
-        expect(() async => await auth.register(userAuth), throwsA(isA<InvalidCredentialsException>()));
+        expect(() async => await auth.register(userAuth),
+            throwsA(isA<InvalidCredentialsException>()));
       });
     });
 
@@ -78,13 +79,18 @@ void main() {
 
         final Auth auth = Auth(dio);
 
-        final UserBase result = await auth.login(UserAuth(email: email, password: password));
+        final UserBase result =
+            await auth.login(UserAuth(email: email, password: password));
 
         expect(result.id, id);
         expect(result.email, email);
+
+        expect(auth.user, result);
       });
 
-      test("Failure: if user does not exist or the password is wrong, should throw InvalidCredentialsException", () {
+      test(
+          "Failure: if user does not exist or the password is wrong, should throw InvalidCredentialsException",
+          () {
         dioAdapter.onPost(
           "/public/login",
           (MockServer e) => e.reply(401, null),
@@ -97,9 +103,12 @@ void main() {
         final Auth auth = Auth(dio);
 
         expect(
-          () async => await auth.login(UserAuth(email: email, password: password)),
+          () async =>
+              await auth.login(UserAuth(email: email, password: password)),
           throwsA(isA<InvalidCredentialsException>()),
         );
+
+        expect(auth.user, isNull);
       });
     });
   });
