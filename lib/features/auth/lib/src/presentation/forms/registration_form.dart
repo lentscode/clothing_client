@@ -1,6 +1,8 @@
 part of "../presentation.dart";
 
+/// The form for registration process.
 class RegistrationForm extends StatefulWidget {
+  /// Creates a new instance of [RegistrationForm].
   const RegistrationForm({super.key});
 
   @override

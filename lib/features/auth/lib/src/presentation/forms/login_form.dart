@@ -1,6 +1,8 @@
 part of "../presentation.dart";
 
+/// The form for login process.
 class LoginForm extends StatefulWidget {
+  /// Creates a new instance of [LoginForm].
   const LoginForm({super.key});
 
   @override
@@ -118,7 +120,8 @@ class _LoginFormState extends State<LoginForm> {
                   }
                 },
                 child: BlocBuilder<AuthCubit, AuthState>(
-                  builder: (BuildContext context, AuthState state) => switch (state) {
+                  builder: (BuildContext context, AuthState state) =>
+                      switch (state) {
                     AuthLoading() => const CircularProgressIndicator.adaptive(),
                     _ => const Text("Login"),
                   },

@@ -1,8 +1,13 @@
 part of "presentation.dart";
 
+/// The authentication page.
+/// 
+/// This page allows the user to log in or register.
 class AuthPage extends StatelessWidget {
+  /// Creates a new instance of [AuthPage].
   const AuthPage({super.key, required this.authCubit});
 
+  /// The [AuthCubit] instance.
   final AuthCubit authCubit;
 
   @override

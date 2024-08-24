@@ -20,7 +20,8 @@ final class AuthInitial extends AuthState {
   const AuthInitial({required super.mode});
 
   @override
-  AuthInitial copyWith({AuthMode? mode}) => AuthInitial(mode: mode ?? this.mode);
+  AuthInitial copyWith({AuthMode? mode}) =>
+      AuthInitial(mode: mode ?? this.mode);
 }
 
 /// Class emitted during a process in [AuthCubit].
@@ -29,7 +30,8 @@ final class AuthLoading extends AuthState {
   const AuthLoading({required super.mode});
 
   @override
-  AuthLoading copyWith({AuthMode? mode}) => AuthLoading(mode: mode ?? this.mode);
+  AuthLoading copyWith({AuthMode? mode}) =>
+      AuthLoading(mode: mode ?? this.mode);
 }
 
 /// Class emitted when login or registration finished successfully.
@@ -60,8 +62,10 @@ final class AuthError extends AuthState {
     this.passwordError,
   });
 
-  /// A message carried by the error.
+  /// The error message to display on the email field.
   final String? emailError;
+
+  /// The error message to display on the password field.
   final String? passwordError;
 
   @override

@@ -6,8 +6,11 @@ import "../../../common.dart";
 
 part "router.impl.dart";
 
+/// App router.
 abstract class AppRouter {
+  /// Creates a new instance of [AppRouter].
   factory AppRouter() => _AppRouterImpl();
 
+  /// Gets the [GoRouter] instance.
   GoRouter get router;
 }

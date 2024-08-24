@@ -21,5 +21,8 @@ abstract class Auth {
   /// Logs in a user.
   Future<UserBase> login(UserAuth user);
 
+  /// The current user.
+  ///
+  /// If the user is unauthenticated, this will return `null`.
   UserBase? get user;
 }

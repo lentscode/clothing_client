@@ -23,6 +23,7 @@ abstract class UserBase {
   /// The id of the user.
   final String id;
 
+  /// The email of the user.
   final String email;
 
   /// The name of the user.
