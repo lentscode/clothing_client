@@ -9,14 +9,20 @@ import "package:dio_cookie_manager/dio_cookie_manager.dart";
 import "package:get_it/get_it.dart";
 import "package:path_provider/path_provider.dart";
 
+import "../../common.dart";
+
+
+export "credentials/credentials.dart";
 export "router/router.dart";
 
+/// Global service locator.
 final GetIt getIt = GetIt.instance;
 
+/// Stets the cookie manager and registers services inside [getIt].
 Future<void> config() async {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: AuthCredentials().apiBaseUrlLocal,
+      baseUrl: Credentials().apiBaseUrlLocal,
       validateStatus: (int? status) => true,
     ),
   );
