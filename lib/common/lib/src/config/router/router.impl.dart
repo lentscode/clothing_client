@@ -12,6 +12,7 @@ class _AppRouterImpl implements AppRouter {
         initialLocation: "/auth",
         routes: <RouteBase>[
           _authRoute,
+          _homeRoute,
         ],
       );
 
@@ -37,9 +38,10 @@ class _AppRouterImpl implements AppRouter {
         ),
       );
 
+  //TODO: IMPLEMENT
   GoRoute get _homeRoute => GoRoute(
         path: "/",
         pageBuilder: (BuildContext context, GoRouterState state) =>
-            const MaterialPage(child: Scaffold()),
+            const MaterialPage<Scaffold>(child: Scaffold()),
       );
 }
