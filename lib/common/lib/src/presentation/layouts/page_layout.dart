@@ -7,8 +7,8 @@ class PageLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: backgroundColor,
         body: SafeArea(
-          minimum: const EdgeInsets.symmetric(horizontal: 16),
           child: body,
         ),
       );
