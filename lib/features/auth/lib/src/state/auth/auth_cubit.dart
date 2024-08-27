@@ -17,7 +17,8 @@ abstract class AuthCubit extends Cubit<AuthState> {
   /// Returns an instance of [AuthCubit].
   factory AuthCubit({
     required LoginUseCase Function(String email, String password) loginUseCase,
-    required RegisterUseCase Function(String email, String password) registerUseCase,
+    required RegisterUseCase Function(String email, String password)
+        registerUseCase,
     AuthMode initialMode = AuthMode.register,
   }) =>
       _AuthCubitImpl(
