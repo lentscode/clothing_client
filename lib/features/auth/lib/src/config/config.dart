@@ -5,8 +5,6 @@ import "package:dio/dio.dart";
 
 import "../../auth.dart";
 
-export "credentials/auth_credentials.dart";
-
 /// Service locator.
 
 /// Initializes [authGetIt].
