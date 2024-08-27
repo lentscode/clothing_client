@@ -13,6 +13,7 @@ class _AppRouterImpl implements AppRouter {
         routes: <RouteBase>[
           _authRoute,
           _homeRoute,
+          _wardrobeRoute,
         ],
       );
 
@@ -43,5 +44,30 @@ class _AppRouterImpl implements AppRouter {
         path: "/",
         pageBuilder: (BuildContext context, GoRouterState state) =>
             const MaterialPage<Scaffold>(child: Scaffold()),
+      );
+
+  GoRoute get _wardrobeRoute => GoRoute(
+        path: "/wardrobe",
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            MaterialPage<WardrobePage>(
+          child: WardrobePage(
+            clothingCubit: ClothingCubit(
+              LoadClothingsOfUserUseCase(getIt.get<ClothingDataSource>()),
+            )..fetch(),
+          ),
+        ),
+        routes: <RouteBase>[
+          _clothingPageRoute,
+        ],
+      );
+
+  GoRoute get _clothingPageRoute => GoRoute(
+        path: "clothing",
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            MaterialPage<ClothingPage>(
+          child: ClothingPage(
+            clothing: state.extra as Clothing,
+          ),
+        ),
       );
 }
