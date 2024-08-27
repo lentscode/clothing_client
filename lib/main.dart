@@ -2,6 +2,7 @@ import "package:common/common.dart";
 import "package:flutter/material.dart";
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await config();
   runApp(const MainApp());
 }
@@ -13,6 +14,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
+        theme: AppTheme.light,
         routerConfig: AppRouter().router,
       );
 }
