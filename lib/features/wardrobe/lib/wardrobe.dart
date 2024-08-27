@@ -1,7 +1,7 @@
 library wardrobe;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export "./src/config/config.dart";
+export "./src/data/data.dart";
+export "./src/logic/logic.dart";
+export "./src/presentation/presentation.dart";
+export "./src/state/state.dart";
