@@ -8,12 +8,13 @@ import "package:dio/dio.dart";
 import "package:dio_cookie_manager/dio_cookie_manager.dart";
 import "package:get_it/get_it.dart";
 import "package:path_provider/path_provider.dart";
+import "package:wardrobe/wardrobe.dart";
 
 import "../../common.dart";
 
-
 export "credentials/credentials.dart";
 export "router/router.dart";
+export "theme/theme.dart";
 
 /// Global service locator.
 final GetIt getIt = GetIt.instance;
@@ -27,10 +28,13 @@ Future<void> config() async {
     ),
   );
 
-  final Directory cookieDirectory = await getApplicationCacheDirectory();
+  final Directory cookieDirectory = await getApplicationDocumentsDirectory();
 
-  final PersistCookieJar cookieJar =
-      PersistCookieJar(storage: FileStorage(cookieDirectory.path));
+  final PersistCookieJar cookieJar = PersistCookieJar(
+      storage: FileStorage("${cookieDirectory.path}/.cookies/"));
+
+  getIt.registerSingleton(cookieJar);
+
   final CookieManager cookieManager = CookieManager(cookieJar);
 
   dio.interceptors.add(cookieManager);
@@ -38,4 +42,5 @@ Future<void> config() async {
   getIt.registerSingleton(dio);
 
   authConfig();
+  wardrobeConfig();
 }
