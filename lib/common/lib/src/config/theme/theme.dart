@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
+/// Class that contains the theme of the app.
 class AppTheme {
+  /// Returns the light theme.
   static ThemeData get light => ThemeData(
         extensions: <ThemeExtension<AppThemeExtension>>[_lightExtension],
       );
@@ -31,7 +33,9 @@ class AppTheme {
       );
 }
 
+/// Extension class that contains the custom theme of the app.
 class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
+  /// Returns an instance of [AppThemeExtension].
   const AppThemeExtension({
     required this.primary,
     required this.secondary,
@@ -41,12 +45,22 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     required this.headline1,
   });
 
+  /// The primary color.
   final Color primary;
+
+  /// The secondary color.
   final Color secondary;
 
+  /// The text style for body text.
   final TextStyle body;
+
+  /// The text style for titles.
   final TextStyle title;
+
+  /// The text style for card titles.
   final TextStyle cardTitle;
+
+  /// The text style for big headings.
   final TextStyle headline1;
 
   @override
@@ -82,7 +96,9 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
       );
 }
 
+/// Extension on [BuildContext] for getting the app theme.
 extension ThemeGetter on BuildContext {
+  /// Returns the [AppThemeExtension] injected into the tree.
   AppThemeExtension get appTheme =>
       Theme.of(this).extension<AppThemeExtension>()!;
 }
