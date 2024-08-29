@@ -21,17 +21,26 @@ final GetIt getIt = GetIt.instance;
 
 /// Stets the cookie manager and registers services inside [getIt].
 Future<void> config() async {
-  final Dio dio = Dio(
-    BaseOptions(
-      baseUrl: Credentials().apiBaseUrlLocal,
-      validateStatus: (int? status) => true,
-    ),
-  );
-
   final Directory cookieDirectory = await getApplicationDocumentsDirectory();
 
   final PersistCookieJar cookieJar = PersistCookieJar(
       storage: FileStorage("${cookieDirectory.path}/.cookies/"));
+
+  final Credentials credentials = Credentials(cookieJar);
+
+  final Dio dio = Dio(
+    BaseOptions(
+      baseUrl: credentials.apiBaseUrlLocal,
+      validateStatus: (int? status) {
+        if (status == 401) {
+          getIt.get<Auth>().logout();
+          cookieJar.delete(Uri.parse(credentials.apiBaseUrlLocal));
+          throw UnauthenticatedException();
+        }
+        return true;
+      },
+    ),
+  );
 
   getIt.registerSingleton(cookieJar);
 
@@ -40,6 +49,7 @@ Future<void> config() async {
   dio.interceptors.add(cookieManager);
 
   getIt.registerSingleton(dio);
+  getIt.registerSingleton(credentials);
 
   authConfig();
   wardrobeConfig();
