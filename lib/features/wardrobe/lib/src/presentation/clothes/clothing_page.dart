@@ -1,8 +1,11 @@
 part of "../presentation.dart";
 
+/// Page that shows details of a piece of clothing.
 class ClothingPage extends StatelessWidget {
+  /// Returns an instance of [ClothingPage].
   const ClothingPage({super.key, required this.clothing});
 
+  /// The clothing to show.
   final Clothing clothing;
 
   @override

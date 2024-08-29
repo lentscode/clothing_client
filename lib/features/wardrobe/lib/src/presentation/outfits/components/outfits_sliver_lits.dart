@@ -12,7 +12,8 @@ class OutfitsSliverLits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SliverList.separated(
-        itemBuilder: (context, index) => OutfitCard(outfit: outfits[index]),
+        itemBuilder: (BuildContext context, int index) =>
+            OutfitCard(outfit: outfits[index]),
         separatorBuilder: (BuildContext context, int index) =>
             const SizedBox(height: 16),
         itemCount: min(outfits.length, 6),

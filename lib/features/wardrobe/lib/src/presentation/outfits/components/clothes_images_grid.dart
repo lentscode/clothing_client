@@ -2,9 +2,12 @@ import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:shared/shared.dart";
 
+/// Shows the clothes' images of an outfit.
 class ClothesImagesGrid extends StatelessWidget {
+  /// Returns an instance of [ClothesImagesGrid].
   const ClothesImagesGrid({super.key, required this.clothes});
 
+  /// The clothes of the outfit.
   final List<Clothing> clothes;
 
   @override

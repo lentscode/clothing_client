@@ -1,8 +1,9 @@
 part of "../../presentation.dart";
 
+/// Shows a horizontal view of [ClothingCard].
 class ClothingListView extends StatelessWidget {
-  const ClothingListView({super.key, required this.clothes});
-  final List<Clothing> clothes;
+  /// Returns an instance of [ClothingListView].
+  const ClothingListView({super.key});
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -12,20 +13,22 @@ class ClothingListView extends StatelessWidget {
                 switch (state) {
                   ClothingLoading() =>
                     const Center(child: CircularProgressIndicator.adaptive()),
-                  ClothingError(:String message) => Container(
+                  ClothingError(:Exception error) => Container(
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.red),
+                        border: Border.all(color: Colors.red, width: 2),
                       ),
                       alignment: Alignment.center,
-                      child: Text(message, style: context.appTheme.body),
+                      child: Text(error.toString(), style: context.appTheme.body),
                     ),
                   ClothingInitial() => const SizedBox(),
                   ClothingLoaded(:List<Clothing> clothes) => clothes.isEmpty
                       ? Container(
                           decoration: BoxDecoration(
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.grey.shade300),
+                            border: Border.all(color: Colors.grey.shade300, width: 2),
                           ),
                           alignment: Alignment.center,
                           child: Text(

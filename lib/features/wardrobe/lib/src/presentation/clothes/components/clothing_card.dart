@@ -10,7 +10,7 @@ class ClothingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => context.push("/clothing", extra: clothing),
+        onTap: () => context.push("/wardrobe/clothing", extra: clothing),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -22,14 +22,17 @@ class ClothingCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: Colors.grey.shade300,
-                    image: clothing.imageUrl != null
-                        ? DecorationImage(
-                            image:
-                                CachedNetworkImageProvider(clothing.imageUrl!),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
                   ),
+                  alignment: Alignment.center,
+                  child: clothing.imageUrl == null
+                      ? const SizedBox()
+                      : CachedNetworkImage(
+                          imageUrl: clothing.imageUrl!,
+                          fit: BoxFit.cover,
+                          errorWidget: (BuildContext context, String url,
+                                  Object error) =>
+                              const Icon(Icons.close_rounded),
+                        ),
                 ),
               ),
             ),

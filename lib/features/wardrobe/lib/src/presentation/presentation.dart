@@ -2,6 +2,7 @@ library;
 
 import "dart:math";
 
+import "package:auth/auth.dart";
 import "package:cached_network_image/cached_network_image.dart";
 import "package:common/common.dart";
 import "package:flutter/material.dart";
