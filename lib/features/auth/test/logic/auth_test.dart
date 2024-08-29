@@ -24,7 +24,7 @@ void main() {
     group("register()", () {
       test("Success: should return a UserBase object", () async {
         dioAdapter.onPost(
-          "/public/register",
+          "/register",
           (MockServer e) => e.reply(200, <String, Object>{
             "_id": id,
             "email": email,
@@ -47,7 +47,7 @@ void main() {
 
       test("Failure: user already exists", () {
         dioAdapter.onPost(
-          "/public/register",
+          "/register",
           (MockServer e) => e.reply(403, null),
           data: <String, String>{"email": email},
         );
@@ -63,7 +63,7 @@ void main() {
     group("login()", () {
       test("Success: should return a UserBase", () async {
         dioAdapter.onPost(
-          "/public/login",
+          "/login",
           (MockServer e) => e.reply(
             200,
             <String, dynamic>{
@@ -92,7 +92,7 @@ void main() {
           "Failure: if user does not exist or the password is wrong, should throw InvalidCredentialsException",
           () {
         dioAdapter.onPost(
-          "/public/login",
+          "/login",
           (MockServer e) => e.reply(401, null),
           data: <String, String>{
             "email": email,

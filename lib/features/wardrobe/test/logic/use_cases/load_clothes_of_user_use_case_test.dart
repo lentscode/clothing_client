@@ -25,8 +25,8 @@ void main() {
                       color: "White"),
                 ));
 
-        final LoadClothingsOfUserUseCase useCase =
-            LoadClothingsOfUserUseCase(clothingDataSource);
+        final LoadClothesOfUserUseCase useCase =
+            LoadClothesOfUserUseCase(clothingDataSource);
 
         final List<Clothing> result = await useCase.execute();
 
@@ -37,8 +37,8 @@ void main() {
         when(() => clothingDataSource.getClothingsOfUser())
             .thenThrow(Exception());
 
-        final LoadClothingsOfUserUseCase useCase =
-            LoadClothingsOfUserUseCase(clothingDataSource);
+        final LoadClothesOfUserUseCase useCase =
+            LoadClothesOfUserUseCase(clothingDataSource);
 
         expect(() async => await useCase.execute(), throwsException);
       });
