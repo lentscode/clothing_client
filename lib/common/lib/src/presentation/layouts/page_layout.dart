@@ -8,6 +8,9 @@ class PageLayout extends StatelessWidget {
     required this.body,
     this.backgroundColor,
     this.appBar,
+    this.padding = EdgeInsets.zero,
+    this.top = true,
+    this.bottom = true,
   });
 
   /// The content of the page.
@@ -16,13 +19,23 @@ class PageLayout extends StatelessWidget {
   /// The background color of the page.
   final Color? backgroundColor;
 
+  /// The AppBar to show at the top of the page.
   final PreferredSizeWidget? appBar;
+
+  final EdgeInsets padding;
+
+  final bool top;
+
+  final bool bottom;
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: appBar,
         backgroundColor: backgroundColor,
         body: SafeArea(
+          top: top,
+          bottom: bottom,
+          minimum: padding,
           child: body,
         ),
       );
