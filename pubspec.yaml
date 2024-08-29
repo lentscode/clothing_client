@@ -7,10 +7,13 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  auth:
+    path: lib/features/auth
   common: 
     path: lib/common
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:
