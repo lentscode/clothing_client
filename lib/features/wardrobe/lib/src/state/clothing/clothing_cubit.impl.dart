@@ -5,13 +5,14 @@ class _ClothingCubitImpl extends ClothingCubit {
 
   @override
   Future<void> fetch() async {
+    emit(ClothingLoading());
     try {
       final List<Clothing> clothings =
           await _loadClothingsOfUserUseCase.execute();
 
       emit(ClothingLoaded(clothings));
     } on Exception catch (e) {
-      emit(ClothingError(e.toString()));
+      emit(ClothingError(e));
     }
   }
 }

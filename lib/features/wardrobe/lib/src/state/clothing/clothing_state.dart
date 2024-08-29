@@ -14,7 +14,7 @@ final class ClothingLoaded extends ClothingState {
 }
 
 final class ClothingError extends ClothingState {
-  ClothingError(this.message);
+  ClothingError(this.error);
 
-  final String message;
+  final Exception error;
 }

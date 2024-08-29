@@ -11,11 +11,10 @@ abstract class ClothingCubit extends Cubit<ClothingState> {
   ClothingCubit._(this._loadClothingsOfUserUseCase) : super(ClothingInitial());
 
   factory ClothingCubit(
-    LoadClothingsOfUserUseCase loadClothingsOfUserUseCase,
-  ) =>
-      _ClothingCubitImpl(loadClothingsOfUserUseCase);
+    LoadClothesOfUserUseCase loadClothingsOfUserUseCase,
+  ) = _ClothingCubitImpl;
 
-  final LoadClothingsOfUserUseCase _loadClothingsOfUserUseCase;
+  final LoadClothesOfUserUseCase _loadClothingsOfUserUseCase;
 
   Future<void> fetch();
 }
