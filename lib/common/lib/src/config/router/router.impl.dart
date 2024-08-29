@@ -9,7 +9,7 @@ class _AppRouterImpl implements AppRouter {
           }
           return null;
         },
-        initialLocation: "/auth",
+        initialLocation: "/",
         routes: <RouteBase>[
           _authRoute,
           _homeRoute,
@@ -20,22 +20,8 @@ class _AppRouterImpl implements AppRouter {
   GoRoute get _authRoute => GoRoute(
         path: "/auth",
         pageBuilder: (BuildContext context, GoRouterState state) =>
-            MaterialPage<AuthPage>(
-          child: AuthPage(
-            authCubit: AuthCubit(
-              loginUseCase: (String email, String password) => LoginUseCase(
-                email: email,
-                password: password,
-                auth: getIt.get<Auth>(),
-              ),
-              registerUseCase: (String email, String password) =>
-                  RegisterUseCase(
-                auth: getIt.get<Auth>(),
-                email: email,
-                password: password,
-              ),
-            ),
-          ),
+            const MaterialPage<AuthPage>(
+          child: AuthPage(),
         ),
       );
 
@@ -43,7 +29,9 @@ class _AppRouterImpl implements AppRouter {
   GoRoute get _homeRoute => GoRoute(
         path: "/",
         pageBuilder: (BuildContext context, GoRouterState state) =>
-            const MaterialPage<Scaffold>(child: Scaffold()),
+            const MaterialPage<InitialPage>(
+          child: InitialPage(),
+        ),
       );
 
   GoRoute get _wardrobeRoute => GoRoute(
@@ -52,7 +40,7 @@ class _AppRouterImpl implements AppRouter {
             MaterialPage<WardrobePage>(
           child: WardrobePage(
             clothingCubit: ClothingCubit(
-              LoadClothingsOfUserUseCase(getIt.get<ClothingDataSource>()),
+              LoadClothesOfUserUseCase(getIt.get<ClothingDataSource>()),
             )..fetch(),
           ),
         ),
