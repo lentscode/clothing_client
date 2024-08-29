@@ -8,8 +8,8 @@ import "../../auth.dart";
 /// Service locator.
 
 /// Initializes [authGetIt].
-void authConfig() async {
-  final Auth auth = Auth(getIt.get<Dio>());
+void authConfig() {
+  final Auth auth = Auth(getIt.get<Dio>())..checkAuthentication();
 
   getIt.registerSingleton(auth);
 }

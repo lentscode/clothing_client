@@ -21,6 +21,10 @@ abstract class Auth {
   /// Logs in a user.
   Future<UserBase> login(UserAuth user);
 
+  void logout();
+
+  Future<UserBase> checkAuthentication();
+
   /// The current user.
   ///
   /// If the user is unauthenticated, this will return `null`.
