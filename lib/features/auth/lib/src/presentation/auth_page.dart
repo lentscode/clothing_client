@@ -1,47 +1,43 @@
 part of "presentation.dart";
 
 /// The authentication page.
-/// 
+///
 /// This page allows the user to log in or register.
 class AuthPage extends StatelessWidget {
   /// Creates a new instance of [AuthPage].
-  const AuthPage({super.key, required this.authCubit});
-
-  /// The [AuthCubit] instance.
-  final AuthCubit authCubit;
+  const AuthPage({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider<AuthCubit>(
-        create: (BuildContext context) => authCubit,
-        child: BlocListener<AuthCubit, AuthState>(
-          listener: (BuildContext context, AuthState state) => switch (state) {
-            AuthSuccess() => context.go("/wardrobe"),
-            _ => null,
-          },
-          child: PageLayout(
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: BlocBuilder<AuthCubit, AuthState>(
-                      builder: (BuildContext context, AuthState state) =>
-                          state.mode == AuthMode.login ? const LoginForm() : const RegistrationForm(),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  BlocBuilder<AuthCubit, AuthState>(
-                    builder: (BuildContext context, AuthState state) => Text.rich(
-                      state.mode == AuthMode.login ? _switchToRegister(context) : _switchToLogin(context),
-                    ),
-                  ),
-                  const SizedBox(height: 16)
-                ],
-              ),
+  Widget build(BuildContext context) => BlocListener<AuthCubit, AuthState>(
+    listener: (BuildContext context, AuthState state) => switch (state) {
+      AuthSuccess() => context.go("/wardrobe"),
+      _ => null,
+    },
+    child: PageLayout(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: BlocBuilder<AuthCubit, AuthState>(
+              builder: (BuildContext context, AuthState state) =>
+                  state.mode == AuthMode.login
+                      ? const LoginForm()
+                      : const RegistrationForm(),
             ),
           ),
-        ),
-      );
+          const SizedBox(height: 16),
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (BuildContext context, AuthState state) => Text.rich(
+              state.mode == AuthMode.login
+                  ? _switchToRegister(context)
+                  : _switchToLogin(context),
+            ),
+          ),
+          const SizedBox(height: 16)
+        ],
+      ),
+    ),
+  );
 
   TextSpan _switchToLogin(BuildContext context) => TextSpan(
         children: <InlineSpan>[
@@ -49,7 +45,8 @@ class AuthPage extends StatelessWidget {
           TextSpan(
             text: "Log in!",
             style: TextStyle(color: Colors.blue.shade400),
-            recognizer: TapGestureRecognizer()..onTap = context.read<AuthCubit>().switchMode,
+            recognizer: TapGestureRecognizer()
+              ..onTap = context.read<AuthCubit>().switchMode,
           )
         ],
       );
@@ -60,7 +57,8 @@ class AuthPage extends StatelessWidget {
           TextSpan(
             text: "Registrati!",
             style: TextStyle(color: Colors.blue.shade400),
-            recognizer: TapGestureRecognizer()..onTap = context.read<AuthCubit>().switchMode,
+            recognizer: TapGestureRecognizer()
+              ..onTap = context.read<AuthCubit>().switchMode,
           )
         ],
       );
